@@ -14,4 +14,6 @@ public interface EmployeeInfoService {
     EmployeeInfo createEmployeeInfo(CreateAbsentRequest absentRequest);
 
     List<EmployeeInfo> getEmployeeInfoByEmployeeId(String employeeId);
+
+    EmployeeInfo updateEmployeeInfo(String employeeId, CreateAbsentRequest absentRequest);
 }

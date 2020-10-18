@@ -37,6 +37,31 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
     @Override
     public List<EmployeeInfo> getEmployeeInfoByEmployeeId(String employeeId) {
-        return employeeInfoRepository.findByEmployeeId(employeeId);
+        return employeeInfoRepository.findByEmployeeIdOrderByCreatedAtDesc(employeeId);
+    }
+
+    @Override
+    public EmployeeInfo updateEmployeeInfo(String employeeId, CreateAbsentRequest absentRequest) {
+
+        List<EmployeeInfo> optionalEmployeeInfo = employeeInfoRepository.findByEmployeeIdOrderByCreatedAtDesc(employeeId);
+        if (!optionalEmployeeInfo.isEmpty()) {
+            var employeeInfo = optionalEmployeeInfo.get(0);
+
+            employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
+            employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
+            employeeInfo.setAbsentEvening(absentRequest.getAbsentEvening());
+            employeeInfo.setModifiedAt(LocalDateTime.now());
+
+            EmployeeInfo empUpdated = employeeInfoRepository.save(employeeInfo);
+
+            int isPresentConditions = empUpdated.getAbsentAfternoon() + empUpdated.getAbsentMorning() + empUpdated.getAbsentEvening();
+
+            empUpdated.setIsPresent(isPresentConditions == 3);
+            employeeInfoRepository.save(empUpdated);
+
+            return empUpdated;
+        }
+
+        return null;
     }
 }
