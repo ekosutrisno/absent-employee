@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
  * @email ekosutrisno801@gmail.com
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/api/v1/employees", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeController {
 

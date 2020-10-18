@@ -4,8 +4,6 @@ import com.ekosutrisno.absensiemployee.model.CreateAbsentRequest;
 import com.ekosutrisno.absensiemployee.model.WebResponse;
 import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +15,7 @@ import java.time.LocalDateTime;
  * @email ekosutrisno801@gmail.com
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/api/v1/info", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeInfoController {
 
