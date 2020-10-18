@@ -2,10 +2,10 @@
 
 ## Model
 
-   - User
+   - Employee
    
-    - id (not Null, unique, pk)
-    - username
+    - employeeId (not Null, unique, pk)
+    - fullName
     - password
     - email
     - telephone
@@ -14,10 +14,10 @@
     - createdAt
     - modifiedAt
     
-   - UserInfo
+   - EmployeeInfo
    
-    - id (not Null, unique, pk)
-    - userId (pfk)
+    - employeeInfoId (not Null, unique, pk)
+    - employeeId (pfk)
     - planning
     - location
     - absentMorning ( Int = 1)
@@ -34,13 +34,13 @@
     - Method POST
     - Accept: application/json
     - Content-Type: application/json
-    - endpoint: /api/v1/users
+    - endpoint: /api/v1/employees
     
    - body :
    
 ```json
 { 
-  "username": "string | required",
+  "fullName": "string | required",
   "email": "string | required",
   "password": "string | required",
   "telephone": "string | required",
@@ -57,13 +57,13 @@
   "statusMessage": "Success | Bad Request | Not Found",
   "data": {
     "id": "string",
-    "username": "string | required",
+    "fullName": "string | required",
     "email": "string | required",
     "password": "string | required",
     "telephone": "string | required",
     "statusEmployee": "string | required",
     "isActive": false,
-    "userInfo": [],
+    "employeeInfo": [],
     "createdAt": "TimeStamp",
     "modifiedAt": "TimeStamp | null"
   },
@@ -71,11 +71,11 @@
 }
 ```
 
-#### Get User
+#### Get Employee
 
     - Method GET
     - Content-Type: application/json
-    - endpoint: /api/v1/users/{userId}
+    - endpoint: /api/v1/employees/{employeeId}
     
 - response :
 
@@ -86,15 +86,15 @@
   "statusMessage": "Success | Bad Request | Not Found",
   "data": {
     "id": "string",
-    "username": "string | required",
+    "fullName": "string | required",
     "email": "string | required",
     "password": "string | required",
     "telephone": "string | required",
     "statusEmployee": "string | required",
     "isActive": false,
-    "userInfo": [
+    "employeeInfo": [
       {
-        "userId": "string",
+        "employeeId": "string",
         "planning": "string",      
         "location": "string",      
         "absentMorning": "Int",      
@@ -112,11 +112,11 @@
 }
 ```
 
-#### Get All User
+#### Get All Employee
 
     - Method GET
     - Content-Type: application/json
-    - endpoint: /api/v1/users/
+    - endpoint: /api/v1/employees
     
 - response :
 
@@ -128,15 +128,15 @@
   "data":[ 
     {
     "id": "string",
-    "username": "string | required",
+    "fullName": "string | required",
     "email": "string | required",
     "password": "string | required",
     "telephone": "string | required",
     "statusEmployee": "string | required",
     "isActive": false,
-    "userInfo": [
+    "employeeInfo": [
       {
-        "userId": "string",
+        "employeeId": "string",
         "planning": "string",      
         "location": "string",      
         "absentMorning": "Int",      
@@ -152,15 +152,15 @@
    },
    {
     "id": "string",
-    "username": "string | required",
+    "fullName": "string | required",
     "email": "string | required",
     "password": "string | required",
     "telephone": "string | required",
     "statusEmployee": "string | required",
     "isActive": false,
-    "userInfo": [
+    "employeeInfo": [
       {
-        "userId": "string",
+        "employeeId": "string",
         "planning": "string",      
         "location": "string",      
         "absentMorning": "Int",      
@@ -179,18 +179,18 @@
 }
 ```
 
-#### Update User
+#### Update Employee
 
     - Method PUT
     - Accept: application/json
     - Content-Type: application/json
-    - endpoint: /api/v1/users/{userId}
+    - endpoint: /api/v1/employees/{employeeId}
     
    - body :
    
 ```json
 { 
-  "username": "string | required",
+  "fullName": "string | required",
   "email": "string | required",
   "password": "string | required",
   "telephone": "string | required",
@@ -207,15 +207,15 @@
   "statusMessage": "Success | Bad Request | Not Found",
   "data": {
     "id": "string",
-    "username": "string | required",
+    "fullName": "string | required",
     "email": "string | required",
     "password": "string | required",
     "telephone": "string | required",
     "statusEmployee": "string | required",
     "isActive": false,
-    "userInfo": [
+    "employeeInfo": [
       {
-        "userId": "string",
+        "employeeId": "string",
         "planning": "string",      
         "location": "string",      
         "absentMorning": "Int",      
@@ -244,7 +244,7 @@
    
 ```json
 {
-    "userId": "string",
+    "employeeId": "string",
     "planning": "string",      
     "location": "string",      
     "absentMorning": "Int",      
@@ -257,7 +257,7 @@
 
 ```json
 {
-    "userId": "string",
+    "employeeId": "string",
     "planning": "string",      
     "location": "string",      
     "absentMorning": "Int",      
@@ -269,18 +269,18 @@
 }
 ```
 
-#### Create Absent
+#### Update Absent
 
     - Method PUT
     - Accept: application/json
     - Content-Type: application/json
-    - endpoint: /api/v1/info/{userId}
+    - endpoint: /api/v1/info/{employeeId}
     
    - body :
    
 ```json
 {
-    "userId": "string",
+    "employeeId": "string",
     "planning": "string",      
     "location": "string",      
     "absentMorning": "Int",      
@@ -293,7 +293,7 @@
 
 ```json
 {
-    "userId": "string",
+    "employeeId": "string",
     "planning": "string",      
     "location": "string",      
     "absentMorning": "Int",      
