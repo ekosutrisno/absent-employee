@@ -11,8 +11,8 @@ services:
       POSTGRES_USER: ekosutrisno
       POSTGRES_DB: db_absensi_master
   absent-employee-api:
-    container_name: absent-employee-api
-    image: absensi-service:0.0.1
+    container_name: absent-employee-api-v1
+    image: absensi-service:0.0.2
     ports:
       - 9000:9000
     environment:

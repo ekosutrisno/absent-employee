@@ -1,5 +1,6 @@
 package com.ekosutrisno.absensiemployee.controller;
 
+import com.ekosutrisno.absensiemployee.entity.EmployeeInfo;
 import com.ekosutrisno.absensiemployee.model.CreateAbsentRequest;
 import com.ekosutrisno.absensiemployee.model.WebResponse;
 import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
@@ -24,7 +25,7 @@ public class EmployeeInfoController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public WebResponse<?> createAbsent(@RequestBody CreateAbsentRequest absentRequest) {
-        var employeeInfo = employeeInfoService.createEmployeeInfo(absentRequest);
+        EmployeeInfo employeeInfo = employeeInfoService.createEmployeeInfo(absentRequest);
 
         return new WebResponse<>(
                 "v0.0.1",
@@ -37,7 +38,7 @@ public class EmployeeInfoController {
 
     @PutMapping("/{employeeId}")
     public WebResponse<?> getAllEmployee(@PathVariable("employeeId") String employeeId, @RequestBody CreateAbsentRequest createAbsentRequest) {
-        var response = employeeInfoService.updateEmployeeInfo(employeeId, createAbsentRequest);
+        EmployeeInfo response = employeeInfoService.updateEmployeeInfo(employeeId, createAbsentRequest);
 
         return new WebResponse<>(
                 "v0.0.1",

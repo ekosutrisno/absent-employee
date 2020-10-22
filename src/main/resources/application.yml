@@ -1,18 +1,3 @@
-server:
-  port: 9000
-
 spring:
-  application:
-    name: ABSENSI-APP-v0.0.1
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5434/db_absensi_master}
-    password: ${DATABASE_PASSWORD:ekosutrisno}
-    username: ${DATABASE_USERNAME:ekosutrisno}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: false
+  profiles:
+    active: local

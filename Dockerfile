@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM adoptopenjdk/openjdk11:jdk-11.0.8_10-alpine
 
 EXPOSE 9000:9000
 

@@ -1,6 +1,8 @@
 package com.ekosutrisno.absensiemployee.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author Eko Sutrisno
@@ -8,6 +10,8 @@ import lombok.Data;
  * @email ekosutrisno801@gmail.com
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateEmployeeRequest {
     private String fullName;
     private String email;
