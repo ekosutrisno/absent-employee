@@ -61,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeResponse getById(String employeeId) {
         Optional<Employee> employeeData = employeeRepository.findById(employeeId);
 
-        var employee = new Employee();
+        Employee employee = new Employee();
 
         if (employeeData.isPresent() && employeeData.get().getIsActive()) {
             employee = employeeData.get();

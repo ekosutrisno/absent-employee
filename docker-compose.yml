@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  absent-employee-api-postgres:
+    container_name: absent-employee-api-postgres
+    image: postgres:13-alpine
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_PASSWORD: ekosutrisno
+      POSTGRES_USER: ekosutrisno
+      POSTGRES_DB: db_absensi_master
+  absent-employee-api:
+    container_name: absent-employee-api
+    image: absensi-service:0.0.1
+    ports:
+      - 9000:9000
+    environment:
+      DATABASE_USERNAME: ekosutrisno
+      DATABASE_PASSWORD: ekosutrisno
+      DATABASE_URL: jdbc:postgresql://absent-employee-api-postgres/db_absensi_master

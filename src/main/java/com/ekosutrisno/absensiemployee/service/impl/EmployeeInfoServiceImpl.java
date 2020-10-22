@@ -23,7 +23,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
     @Override
     public EmployeeInfo createEmployeeInfo(CreateAbsentRequest absentRequest) {
-        var employeeInfo = new EmployeeInfo();
+        EmployeeInfo employeeInfo = new EmployeeInfo();
         employeeInfo.setEmployeeId(absentRequest.getEmployeeId());
         employeeInfo.setPlanning(absentRequest.getPlanning());
         employeeInfo.setLocation(absentRequest.getLocation());
@@ -45,7 +45,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
         List<EmployeeInfo> optionalEmployeeInfo = employeeInfoRepository.findByEmployeeIdOrderByCreatedAtDesc(employeeId);
         if (!optionalEmployeeInfo.isEmpty()) {
-            var employeeInfo = optionalEmployeeInfo.get(0);
+            EmployeeInfo employeeInfo = optionalEmployeeInfo.get(0);
 
             employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
             employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
