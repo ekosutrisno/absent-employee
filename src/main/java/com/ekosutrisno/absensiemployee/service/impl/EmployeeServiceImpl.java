@@ -12,8 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(createEmployeeRequest.getPassword());
         employee.setTelephone(createEmployeeRequest.getTelephone());
         employee.setStatusEmployee(createEmployeeRequest.getStatusEmployee());
-        employee.setCreatedAt(LocalDateTime.now());
+        employee.setCreatedAt(new Date());
 
         Employee dataSaved = employeeRepository.save(employee);
 

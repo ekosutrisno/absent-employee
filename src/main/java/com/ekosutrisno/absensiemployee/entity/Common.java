@@ -1,9 +1,10 @@
 package com.ekosutrisno.absensiemployee.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @Author Eko Sutrisno
@@ -14,6 +15,8 @@ import java.time.LocalDateTime;
 @Data
 @MappedSuperclass
 public class Common {
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    @JsonFormat(timezone = "GMT+07:00")
+    private Date createdAt;
+    @JsonFormat(timezone = "GMT+07:00")
+    private Date modifiedAt;
 }

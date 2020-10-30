@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public class EmployeeController {
                 200,
                 "Success",
                 response,
-                LocalDateTime.now()
+                new Date()
         );
     }
 
@@ -50,7 +50,7 @@ public class EmployeeController {
                 200,
                 "Success",
                 response,
-                LocalDateTime.now()
+                new Date()
         );
     }
 
@@ -65,7 +65,7 @@ public class EmployeeController {
                 200,
                 "Success",
                 response,
-                LocalDateTime.now()
+                new Date()
         );
     }
 }

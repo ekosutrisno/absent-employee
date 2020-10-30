@@ -15,9 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -81,8 +81,8 @@ class EmployeeControllerTest {
                 "Placement",
                 false,
                 Collections.emptyList(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
+                new Date(),
+                new Date()
         );
 
         when(employeeService.register(request)).thenReturn(employeeResponse);
@@ -137,8 +137,8 @@ class EmployeeControllerTest {
                 "Idle",
                 false,
                 employeeInfoList,
-                LocalDateTime.now(),
-                LocalDateTime.now()
+                new Date(),
+                new Date()
         );
 
         // When
@@ -196,8 +196,8 @@ class EmployeeControllerTest {
                         "Idle",
                         false,
                         employeeInfoList,
-                        LocalDateTime.now(),
-                        LocalDateTime.now()
+                        new Date(),
+                        new Date()
                 ),
                 new EmployeeResponse(
                         "1235",
@@ -207,8 +207,8 @@ class EmployeeControllerTest {
                         "Placement",
                         true,
                         employeeInfoList,
-                        LocalDateTime.now(),
-                        LocalDateTime.now()
+                        new Date(),
+                        new Date()
                 )
         );
 

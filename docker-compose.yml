@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: db_absensi_master
   absent-employee-api:
     container_name: absent-employee-api-v1
-    image: absensi-service:0.0.2
+    image: absensi-service:0.0.3
     ports:
       - 9000:9000
     environment:

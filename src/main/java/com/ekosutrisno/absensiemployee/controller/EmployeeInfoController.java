@@ -5,10 +5,11 @@ import com.ekosutrisno.absensiemployee.model.CreateAbsentRequest;
 import com.ekosutrisno.absensiemployee.model.WebResponse;
 import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @Author Eko Sutrisno
@@ -24,6 +25,7 @@ public class EmployeeInfoController {
     private EmployeeInfoService employeeInfoService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public WebResponse<?> createAbsent(@RequestBody CreateAbsentRequest absentRequest) {
         EmployeeInfo employeeInfo = employeeInfoService.createEmployeeInfo(absentRequest);
 
@@ -32,7 +34,7 @@ public class EmployeeInfoController {
                 200,
                 "Success",
                 employeeInfo,
-                LocalDateTime.now()
+                new Date()
         );
     }
 
@@ -45,7 +47,7 @@ public class EmployeeInfoController {
                 200,
                 "Success",
                 response,
-                LocalDateTime.now()
+                new Date()
         );
     }
 }

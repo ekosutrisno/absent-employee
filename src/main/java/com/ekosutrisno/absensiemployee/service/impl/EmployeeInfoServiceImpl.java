@@ -7,7 +7,7 @@ import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
         employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
         employeeInfo.setAbsentEvening(absentRequest.getAbsentEvening());
-        employeeInfo.setCreatedAt(LocalDateTime.now());
+        employeeInfo.setCreatedAt(new Date());
 
         return employeeInfoRepository.save(employeeInfo);
     }
@@ -50,16 +50,13 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
             employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
             employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
             employeeInfo.setAbsentEvening(absentRequest.getAbsentEvening());
-            employeeInfo.setModifiedAt(LocalDateTime.now());
+            employeeInfo.setModifiedAt(new Date());
 
-            EmployeeInfo empUpdated = employeeInfoRepository.save(employeeInfo);
+            int isPresentConditions = absentRequest.getAbsentAfternoon() + absentRequest.getAbsentMorning() + absentRequest.getAbsentEvening();
 
-            int isPresentConditions = empUpdated.getAbsentAfternoon() + empUpdated.getAbsentMorning() + empUpdated.getAbsentEvening();
+            employeeInfo.setIsPresent(isPresentConditions == 3);
 
-            empUpdated.setIsPresent(isPresentConditions == 3);
-            employeeInfoRepository.save(empUpdated);
-
-            return empUpdated;
+            return employeeInfoRepository.save(employeeInfo);
         }
 
         return null;

@@ -1,11 +1,12 @@
 package com.ekosutrisno.absensiemployee.model;
 
 import com.ekosutrisno.absensiemployee.entity.EmployeeInfo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,8 @@ public class EmployeeResponse {
     private String statusEmployee;
     private Boolean isActive;
     private List<EmployeeInfo> employeeInfo;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    @JsonFormat(timezone = "GMT+07:00")
+    private Date createdAt;
+    @JsonFormat(timezone = "GMT+07:00")
+    private Date modifiedAt;
 }
