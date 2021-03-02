@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author Eko Sutrisno
@@ -16,7 +15,5 @@ import java.util.Optional;
 public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo, String> {
 
     List<EmployeeInfo> findByEmployeeIdOrderByCreatedAtDesc(String employeeId);
-
-    Optional<EmployeeInfo> findByEmployeeId(String employeeId);
 
 }

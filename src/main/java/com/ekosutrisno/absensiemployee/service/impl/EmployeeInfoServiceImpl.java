@@ -4,10 +4,9 @@ import com.ekosutrisno.absensiemployee.entity.EmployeeInfo;
 import com.ekosutrisno.absensiemployee.model.CreateAbsentRequest;
 import com.ekosutrisno.absensiemployee.repository.EmployeeInfoRepository;
 import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,10 +15,10 @@ import java.util.List;
  * @email ekosutrisno801@gmail.com
  */
 @Service
+@RequiredArgsConstructor
 public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
-    @Autowired
-    private EmployeeInfoRepository employeeInfoRepository;
+    private final EmployeeInfoRepository employeeInfoRepository;
 
     @Override
     public EmployeeInfo createEmployeeInfo(CreateAbsentRequest absentRequest) {
@@ -30,7 +29,6 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
         employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
         employeeInfo.setAbsentEvening(absentRequest.getAbsentEvening());
-        employeeInfo.setCreatedAt(new Date());
 
         return employeeInfoRepository.save(employeeInfo);
     }
@@ -50,7 +48,6 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
             employeeInfo.setAbsentMorning(absentRequest.getAbsentMorning());
             employeeInfo.setAbsentAfternoon(absentRequest.getAbsentAfternoon());
             employeeInfo.setAbsentEvening(absentRequest.getAbsentEvening());
-            employeeInfo.setModifiedAt(new Date());
 
             int isPresentConditions = absentRequest.getAbsentAfternoon() + absentRequest.getAbsentMorning() + absentRequest.getAbsentEvening();
 

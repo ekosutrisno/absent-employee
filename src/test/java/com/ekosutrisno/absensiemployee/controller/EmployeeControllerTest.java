@@ -15,18 +15,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.http.MediaType.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 /**
  * The type Employee controller test.
@@ -81,8 +82,8 @@ class EmployeeControllerTest {
                 "Placement",
                 false,
                 Collections.emptyList(),
-                new Date(),
-                new Date()
+                OffsetDateTime.now(),
+                OffsetDateTime.now()
         );
 
         when(employeeService.register(request)).thenReturn(employeeResponse);
@@ -137,8 +138,8 @@ class EmployeeControllerTest {
                 "Idle",
                 false,
                 employeeInfoList,
-                new Date(),
-                new Date()
+                OffsetDateTime.now(),
+                OffsetDateTime.now()
         );
 
         // When
@@ -196,8 +197,8 @@ class EmployeeControllerTest {
                         "Idle",
                         false,
                         employeeInfoList,
-                        new Date(),
-                        new Date()
+                        OffsetDateTime.now(),
+                        OffsetDateTime.now()
                 ),
                 new EmployeeResponse(
                         "1235",
@@ -207,8 +208,8 @@ class EmployeeControllerTest {
                         "Placement",
                         true,
                         employeeInfoList,
-                        new Date(),
-                        new Date()
+                        OffsetDateTime.now(),
+                        OffsetDateTime.now()
                 )
         );
 

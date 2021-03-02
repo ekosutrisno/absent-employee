@@ -35,13 +35,13 @@ public class EmployeeInfo extends Common {
     @Column(name = "location", length = 100, nullable = false)
     private String location;
 
-    @Column(name = "absentMorning")
+    @Column(name = "absent_morning")
     private Integer absentMorning = 0;
 
-    @Column(name = "absentAfternoon")
+    @Column(name = "absent_afternoon")
     private Integer absentAfternoon = 0;
 
-    @Column(name = "absentEvening")
+    @Column(name = "absent_evening")
     private Integer absentEvening = 0;
 
     @Column(name = "is_present")

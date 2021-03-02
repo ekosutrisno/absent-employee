@@ -4,6 +4,7 @@ import com.ekosutrisno.absensiemployee.model.CreateEmployeeRequest;
 import com.ekosutrisno.absensiemployee.model.EmployeeResponse;
 import com.ekosutrisno.absensiemployee.model.WebResponse;
 import com.ekosutrisno.absensiemployee.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +23,10 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/api/v1/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

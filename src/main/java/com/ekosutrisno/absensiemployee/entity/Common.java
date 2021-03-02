@@ -1,10 +1,12 @@
 package com.ekosutrisno.absensiemployee.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import java.time.OffsetDateTime;
 
 /**
  * @Author Eko Sutrisno
@@ -15,8 +17,20 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 public class Common {
-    @JsonFormat(timezone = "GMT+07:00")
-    private Date createdAt;
-    @JsonFormat(timezone = "GMT+07:00")
-    private Date modifiedAt;
+    @Column(nullable = false, updatable = false)
+    protected OffsetDateTime createdAt;
+
+    @Column(nullable = false)
+    protected OffsetDateTime modifiedAt;
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = OffsetDateTime.now();
+        modifiedAt = createdAt;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        modifiedAt = OffsetDateTime.now();
+    }
 }

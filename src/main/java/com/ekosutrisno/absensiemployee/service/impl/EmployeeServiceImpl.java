@@ -7,13 +7,12 @@ import com.ekosutrisno.absensiemployee.model.EmployeeResponse;
 import com.ekosutrisno.absensiemployee.repository.EmployeeRepository;
 import com.ekosutrisno.absensiemployee.service.EmployeeInfoService;
 import com.ekosutrisno.absensiemployee.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,13 +23,11 @@ import java.util.stream.Collectors;
  * @email ekosutrisno801@gmail.com
  */
 @Service
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private EmployeeInfoService employeeInfoService;
+    private final EmployeeRepository employeeRepository;
+    private final EmployeeInfoService employeeInfoService;
 
     @Override
     public EmployeeResponse register(CreateEmployeeRequest createEmployeeRequest) {
@@ -40,7 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(createEmployeeRequest.getPassword());
         employee.setTelephone(createEmployeeRequest.getTelephone());
         employee.setStatusEmployee(createEmployeeRequest.getStatusEmployee());
-        employee.setCreatedAt(new Date());
 
         Employee dataSaved = employeeRepository.save(employee);
 
@@ -90,18 +86,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> employeePage = employeeRepository.findAll(pageable);
 
         return employeePage.get().filter(Employee::getIsActive)
-                 .map(employee ->
-                     new EmployeeResponse(
-                             employee.getEmployeeId(),
-                             employee.getFullName(),
-                             employee.getEmail(),
-                             employee.getTelephone(),
-                             employee.getStatusEmployee(),
-                             employee.getIsActive(),
-                             employeeInfoService.getEmployeeInfoByEmployeeId(employee.getEmployeeId()),
-                             employee.getCreatedAt(),
-                             employee.getModifiedAt()
-                     )
-                 ).collect(Collectors.toList());
+                .map(employee ->
+                        new EmployeeResponse(
+                                employee.getEmployeeId(),
+                                employee.getFullName(),
+                                employee.getEmail(),
+                                employee.getTelephone(),
+                                employee.getStatusEmployee(),
+                                employee.getIsActive(),
+                                employeeInfoService
+                                        .getEmployeeInfoByEmployeeId(employee.getEmployeeId()),
+                                employee.getCreatedAt(),
+                                employee.getModifiedAt()
+                        )
+                ).collect(Collectors.toList());
     }
 }

@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -26,7 +26,7 @@ public class EmployeeResponse {
     private Boolean isActive;
     private List<EmployeeInfo> employeeInfo;
     @JsonFormat(timezone = "GMT+07:00")
-    private Date createdAt;
+    private OffsetDateTime createdAt;
     @JsonFormat(timezone = "GMT+07:00")
-    private Date modifiedAt;
+    private OffsetDateTime modifiedAt;
 }

@@ -15,6 +15,8 @@ services:
     image: absensi-service:0.0.3
     ports:
       - 9000:9000
+    depends_on:
+      - absent-employee-api-postgres
     environment:
       DATABASE_USERNAME: ekosutrisno
       DATABASE_PASSWORD: ekosutrisno
